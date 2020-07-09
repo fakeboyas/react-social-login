@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React,{useState} from "react";
 import { FacebookProvider, Login } from "react-facebook";
 import { useHistory } from "react-router-dom";
 import styled from 'styled-components'
+import { useDispatch} from 'react-redux'
+import {getFacebook} from '../../redux/actions'
+
 
 const BtnFacebook = styled.button`
 width: 180px;
@@ -23,21 +26,18 @@ display: inline-block;
 
 
 export default function Facebook() {
+    const dispatch = useDispatch();
     const history = useHistory();
-    const [facebook, setFacebook] = useState({});
+    const [errors, setErrors] = useState({});
     const handleResponse = (data) => {
-        setFacebook(data);
+        dispatch(getFacebook(data, history));
     };
 
     const handleError = (error) => {
-        this.setState({ error });
-    };
+        console.log(errors);
 
-    useEffect(() => {
-        if (facebook.profile !== undefined) {
-            history.push("/home");
-        }
-    }, [facebook, history]);
+        setErrors({ error });
+    };
 
    
 

@@ -1,11 +1,8 @@
 import React from "react";
 import { Facebook, Google } from "../../components";
-import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 
-const ButtonGroup = styled.div`
-  display: flex;
-`;
+
 
 function Login() {
   return (
